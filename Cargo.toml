@@ -1,0 +1,9 @@
+[package]
+
+name = "editor"
+version = "0.0.1"
+authors = [ "Nicolas Kirchner <kirchner.nic@gmail.com" ]
+
+[dependencies]
+
+termion = "1.0"
