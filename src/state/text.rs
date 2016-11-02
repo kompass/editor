@@ -15,21 +15,26 @@ impl Text {
 	}
 }
 
-/*impl Editable for Text {
+impl Editable for Text {
 	fn step(&mut self, mov: Movement) {
 		match mov {
 			Movement::Up => {
 				if self.line > 0 {
-
+                    
 				}
 			}
 		}
 	}
 
     fn move_at(&mut self, line: usize, col: usize) {
-    	let line_index = cmp::min(line, self.line_count);
-    	let line = 
+    	let line_index = cmp::min(line, self.rope.line_count());
+    	let line = self.line(line_index);
+        let col_index = cmp::min(col, line.count());
+        let line_begin = begining_of_line(line_index);
+
+        self.pos = line_begin + col_index;
     }
+
     fn insert(&mut self, c: char);
     fn insert_forward(&mut self, c: char);
     fn delete(&mut self) -> Option<char>;
@@ -45,11 +50,11 @@ impl Text {
     fn iter(&self) -> CharIter;
     fn iter_line(&self, line: usize) -> CharIter;
     fn line_index_to_char_index(&self, line: usize) -> usize;
-}*/
+}
 
-pub fn is_line_ending(c: &'a str) -> bool {
+pub fn is_line_ending(c: char) -> bool {
     match c {
-    	"\u{000A}" => true,
+    	'\u{000A}' => true,
         _ => false
     }
 }
